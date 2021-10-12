@@ -33,10 +33,12 @@ const Annotation = () => {
 
   const handleMouseUp = () => {
     const selectedContent = window.getSelection().toString();
+    if(selectedContent){
     console.log(selectedContent);
     console.log(label);
     console.log(window.getSelection().getRangeAt(0).getBoundingClientRect());
     infoHandler(selectedContent);
+    }
   };
   return (
     <div style={{ height: "100vh" }}>
