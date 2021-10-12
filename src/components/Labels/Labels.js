@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Context from "../../Context/Context";
-import radioLabels from '../../Data/label';
+import radioLabels from "../../Data/label";
 
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -8,14 +8,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
-
 const Labels = () => {
   const { label, labelHandler } = useContext(Context);
   const handleLabel = (e) => {
     labelHandler(e.target.value);
   };
   return (
-    <FormControl component="fieldset" sx={{mt:5}}>
+    <FormControl component="fieldset" sx={{ mt: 5, ml: 2 }}>
       <FormLabel component="legend">Categories</FormLabel>
       <RadioGroup
         value={label}
@@ -29,7 +28,7 @@ const Labels = () => {
               value={item.value}
               control={<Radio />}
               label={
-                <span style={{ textAlign: "center", verticalAlign: "middle" }}>
+                <span>
                   <svg
                     width="15"
                     zoomAndPan="magnify"

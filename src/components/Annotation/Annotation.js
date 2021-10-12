@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Context from "../../Context/Context";
 import radioLabels from "../../Data/label";
-
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 const Annotation = () => {
-  const { annotation, info, label } = useContext(Context);
+  const { annotation, info, label, infoHandler } = useContext(Context);
   const [content, setContent] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
 
@@ -15,6 +14,7 @@ const Annotation = () => {
       const identifiedItem = info.find((item) => {
         return item._id === annotation;
       });
+
       setContent(identifiedItem.content);
     };
 
@@ -31,14 +31,21 @@ const Annotation = () => {
     colorHandler();
   }, [label]);
 
-  const handleMouseUp=()=>{
-    console.log(` ${window.getSelection().toString()}`);
-    console.log(window.getSelection().getRangeAt(0).getBoundingClientRect())
-}
+  const handleMouseUp = () => {
+    const selectedContent = window.getSelection().toString();
+    console.log(selectedContent);
+    console.log(label);
+    console.log(window.getSelection().getRangeAt(0).getBoundingClientRect());
+    infoHandler(selectedContent);
+  };
   return (
     <div style={{ height: "100vh" }}>
-      <Container sx={{mt:5}}>
-        <Typography sx={{ fontSize: 18 }} gutterBottom onMouseUp={handleMouseUp}>
+      <Container sx={{ mt: 5 }}>
+        <Typography
+          sx={{ fontSize: 18 }}
+          gutterBottom
+          onMouseUp={handleMouseUp}
+        >
           {content}
         </Typography>
       </Container>
